@@ -1,0 +1,58 @@
+Routing
+
+GET /?error=wrongpw                                 kezdőoldal
+    getAllPostMW
+    handleWrongPwMW                                 kell ez ????????????????????????????????
+    renderMW(index.html)
+----------------------------------------------------------------------------------------------------------
+GET,POST /login                                     itt tud bejelentkezni a felhasználó
+    checkLoginMW                                    post paraméter(ek) érkeznek, sikeres vagy sikertelen lehet az eredménye
+    renderMW(login.html)
+----------------------------------------------------------------------------------------------------------
+GET,POST /signup                                    regisztrálás
+    newUserMW                                       postban érkezett paraméterekkel regisztrálom a usert
+    renderMW(signup.html)
+----------------------------------------------------------------------------------------------------------
+GET,POST /newpw                                     a felhasználó új jeleszót tud igényelni
+    sendPwMW                                        paraméterként kapott email cím-re küldd egy emailt/vagy csak kíirom consolera
+    renderMW(forgottenpw.html)
+----------------------------------------------------------------------------------------------------------
+GET, POST /:postid                                  megnyitott post jelenik meg
+    authMW
+    getPostMW
+    newCommentMW
+    renderMW(openedpost.html)
+----------------------------------------------------------------------------------------------------------
+GET, POST /admin                                    felhasználók listája, melyeket az admin törölni tud
+    authMW                                          ellenőrzi, hogy be van e jelentkezve a user
+    getUsersMW                                      kilistázza a felhasználókat
+    deleteUserMW                                    paraméterként kapott usert törli
+    renderMW(admin.html)
+----------------------------------------------------------------------------------------------------------
+GET, POST /posts                                    adott felhasználóhoz tartozó postok listája
+    authMW                                          ellenőrzi, hogy be van e jelentkezve a user
+    getUsersPostsMW                                 visszaadja egy adott user posztjait
+    deletePostBMW                                   post id-ja alapján törli a posztot
+    renderMW(posts.html)
+----------------------------------------------------------------------------------------------------------
+GET, POST /posts/:postid                            a bejelentkezett felhasználó szerkeszthetni az adott posztot
+    authMW                                          ellenőrzi, hogy be van e jelentkezve a user
+    getPostMW                                       post id alapján lekérdezi az adatbázisból a post címét szövegét, stb
+    updatePostMW                                    frissíti az adott posthoz tartozó információkat
+    renderMW(editpost.html )
+----------------------------------------------------------------------------------------------------------
+GET, POST /posts/newpost                            új post létrehozása
+    authMW                                          ellenőrzi, hogy be van e jelentkezve a user
+    newPostMW
+    renderMW(newpost.html)
+----------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+<% if(typeof user === 'undefined') {%>
+    <%- include('header') %>
+<% } else{ %>
+    <%- include('headerAfterLogin') %>    
+<% } %>
+<main class="container" style="margin-top: 2%">
+    <div class="row">
+        <div class="col-10">
+            <h3><%= post.title %></h3>
+            <p class="text-break" style="margin-top: 1%"><%= post.text %></p>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="newComment" style="font-weight: bold">Comment</label>
+                    <textarea class="form-control" id="newComment" rows="5" name="newComment" placeholder="start typing..."></textarea>
+                </div>
+                <input type="hidden" value ="<%= post._id %>" id="postID" name="postID">
+                <input type="submit" class="btn btn-primary" value="Post comment">
+            </form>
+            <h4 style="margin-top: 3%">Comments</h4>
+            <% postComments.forEach(function(comment) {%>    
+                <div style="margin-top: 1%">
+                    <h7 style="font-weight: bold"><%= comment._commentedBy %></h7>
+                    <p class="text-break"><%= comment.text %> </p>
+                </div>
+            <% }); %>  
+        </div>
+    </div>
+</main>
+<%- include('footer') %>

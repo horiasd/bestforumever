@@ -1,0 +1,19 @@
+<%- include('headerAfterLogin')  %> 
+<main class="container" style="margin-top: 2%">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h3><%= post.title %></h3>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="editTextArea">Edit your post</label>
+                    <textarea class="form-control" id="editTextArea" name="editTextArea" rows="10"><%= post.text %></textarea>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Save">
+                <a class="btn btn-link" href="/posts">Cancel</a>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<%- include('footer')  %> 

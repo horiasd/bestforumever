@@ -1,0 +1,30 @@
+<%- include('headerAfterLogin') %>
+<main class="container" style="margin-top: 2%">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-7 col-lg-5">
+            <h3>Admin</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th style="width: 15%" scope="col">#</th>
+                    <th style="width: 70%" scope="col">username</th>
+                    <th style="width: 15%" scope="col">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% i=1;users.forEach(function(user) {%>
+                        <tr>
+                            <th scope="row"><%= i%></th>
+                            <td> <%= user.username %> </td>
+                            <td>
+                                <a href="/admin/<%=user._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                            </td>    
+                    </tr>
+                    <% i++;}); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<%- include('footer') %>

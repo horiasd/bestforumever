@@ -1,0 +1,40 @@
+<% if(typeof loggedIn === 'undefined') {%>
+    <%- include('header') %>
+<% } else{ %>
+    <%- include('headerAfterLogin') %>    
+<% } %>     
+<main style="margin-top: 2%" class="container">
+    <div class="row">
+        <div class="col-10">
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th style="width: 35%" scope="col">&nbsp;</th>
+                    <th style="width: 60%" scope="col">&nbsp;</th>
+                    <th style="width: 5%" scope="col">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% posts.forEach(function(post) {%>
+                    <tr>
+                        <td> <%= post.title %> </td>
+                        <td> <%= post.text %> </td>
+                    <td>
+                        <a href="/<%= post._id%>" class="btn btn-sm btn-link">Open</a>
+                    </td>
+                </tr>
+                <% }); %>  
+                
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2" style="background-color: papayawhip">
+            <br>
+            <br>
+
+            <a class="btn btn-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" >CLICK HERE <BR> FREE IPHONE!!!!!!!</a>
+        </div>
+    </div>
+</main>
+
+<%- include('footer') %> 
