@@ -79,7 +79,6 @@ module.exports = function (app) {
     );
     
     app.use('/:postid',
-        //authMW(objRepo),
         getPostMW(objRepo),
         getPostCommentsMW(objRepo),
         newCommentMW(objRepo),
