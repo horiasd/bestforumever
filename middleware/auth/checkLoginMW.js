@@ -11,7 +11,9 @@ module.exports = function(objectrepository) {
 
     return function(req, res, next) {
 
-        if(typeof req.body.password === 'undefined') {
+        if(typeof req.body.password === 'undefined' 
+        || req.body.username === '' 
+        || req.body.password === '') {
             return next();
         }
 

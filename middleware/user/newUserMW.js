@@ -9,13 +9,27 @@ module.exports = function(objectrepository) {
     const UserModel = requireOption(objectrepository, 'UserModel');
 
     return function(req, res, next) {
-        if(typeof req.body.username === 'undefined' || 
-            req.body.email === 'undefined' || 
-            req.body.password === 'undefined' || 
-            req.body.passwordagain === 'undefined') {
+        if(typeof req.body.username === 'undefined' || req.body.username === '' ||
+            typeof req.body.email === 'undefined' || req.body.email === '' || 
+            typeof req.body.password === 'undefined' || req.body.password === '' || 
+            typeof req.body.passwordagain === 'undefined' || req.body.passwordagain === '') {
                 return next();
         }
-        if(res.locals.password === res.locals.passwordagain){
+        
+        if(typeof res.locals.emailExists !== 'undefined' && typeof res.locals.usernameExists !== 'undefined') {
+            res.locals.error = 'There\' a user with this email address & username.';
+            return next();
+        }
+        if(typeof res.locals.emailExists !== 'undefined') {
+            res.locals.error ='There\'s a user with this email address.';
+            return next();
+        }
+        if(typeof res.locals.usernameExists !== 'undefined') {
+            res.locals.error ='There\'s a user with this username.';
+            return next();
+        }
+        
+        if(req.body.password === req.body.passwordagain){
             res.locals.user = new UserModel();
             res.locals.user.email = req.body.email;
             res.locals.user.username = req.body.username;
@@ -36,7 +50,6 @@ module.exports = function(objectrepository) {
         }
         else{
             res.locals.error = 'Password\'s didnt match';
-            res.redirect('/signup')
             return next();
         }
         

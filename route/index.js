@@ -17,6 +17,8 @@ const deleteUserMW = require('../middleware/user/deleteUserMW');
 const getUsersMW = require('../middleware/user/getUsersMW');
 const newUserMW = require('../middleware/user/newUserMW');
 const getUserMW = require('../middleware/user/getUserMW');
+const checkUserByEmailMW = require('../middleware/user/checkUserByEmailMW');
+const checkUserByUsernameMW = require('../middleware/user/checkUserByUsernameMW');
 
 const UserModel = require('../models/user')
 const PostModel = require('../models/post');
@@ -51,12 +53,15 @@ module.exports = function (app) {
     );
     app.use('/signup',
         auth2MW(objRepo),
+        checkUserByEmailMW(objRepo),
+        checkUserByUsernameMW(objRepo),
         newUserMW(objRepo),
         renderMW(objRepo,'signup')
     );
     app.use('/logout',authMW(objRepo), logoutMW(objRepo));
     app.use('/newpw',
         auth2MW(objRepo),
+        //getUserByEmail(objRepo),
         sendPwMW(objRepo),
         renderMW(objRepo,'forgottenpw')
     );
@@ -71,7 +76,6 @@ module.exports = function (app) {
         renderMW(objRepo, 'admin')
     );
     
-    
     app.use('/newpost',
         authMW(objRepo),
         newPostMW(objRepo),
@@ -79,6 +83,7 @@ module.exports = function (app) {
     );
     
     app.use('/:postid',
+        isLoggedInMW(objRepo),
         getPostMW(objRepo),
         getPostCommentsMW(objRepo),
         newCommentMW(objRepo),

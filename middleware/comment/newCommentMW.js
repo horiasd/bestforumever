@@ -14,7 +14,7 @@ module.exports = function(objectrepository) {
             return next();
         }
         
-        if(typeof req.body.newComment === 'undefined') {
+        if(typeof req.body.newComment === 'undefined' || req.body.newComment === '') {
             return next();
         } 
         res.locals.Comment = new CommentModel();
