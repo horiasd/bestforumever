@@ -41,8 +41,8 @@ module.exports = function(objectrepository) {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'bestforumeverCompany@gmail.com',
-                    pass: 'ahosszujelszavakmindignagyonjok'
+                    user: 'emailadressyouaresendingfrom',
+                    pass: 'password'
                 }
             });
 
